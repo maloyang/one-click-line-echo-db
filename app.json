@@ -1,5 +1,5 @@
 {
-    "name": "flask line-bot echo demo with DB add-on",
+    "name": "line-bot demo with DB add-on",
     "description": "a basic echo-line-bot with DB add-on @ heroku demo",
     "repository": "https://github.com/maloyang/one-click-line-echo-db",
     "env": {
@@ -9,5 +9,10 @@
         "LINE_CHANNEL_ACCESS_TOKEN": {
             "description": "Input your 'Channel access token'"
         }
-    }
+    },
+    "addons": [
+        {
+            "plan": "heroku-postgresql:hobby-dev"
+        }        
+    ]
 }
