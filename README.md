@@ -1,27 +1,31 @@
-# one-click-line-echo-db
-- a one-click demo to deploy a line-echo bot with DB add-on to heroku
-- 這一個demo是加入DB add-on 的範例
+# One-Click Demo3
 
-## auto deploy this demo
+### 這一個Demo主要是說明如何在git上做一個one-click就可以自動佈署到Heroku的line-bot專案按鈕，並引入DB
+### 相較於 [Demo2](https://github.com/maloyang/one-click-line-echo) ，這一個Demo多安裝了DB add-on
+
+- 可以按以下的按鈕進行自動佈署本App
+- one-click button to auto deploy this demo
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-## 這一個rep主要是memo一下怎麼在github上做一個可以讓自己，或別人one-click直接佈署到heroku的按鈕
-## 相較於上一個[demo: one-click-line-echo](https://github.com/maloyang/one-click-line-echo)，這一個demo除了讓使用者輸入環境變數的功能，還加入了安裝一個add-on的功能
-## 因為line bot一定要輸入你申請到的bot的"LINE_CHANNEL_SECRET"和"LINE_CHANNEL_ACCESS_TOKEN"，因此請確實輸入，這樣你的line-bot才會正常運作
+
+### 說明如下
 - 如下，要加入這一段，就可以產生按鈕，可以參考[這邊](https://devcenter.heroku.com/articles/heroku-button)
 
-<code>
-  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-</code>
 
-- 接著是在你的repo上根目錄下放一個 app.json 檔，格式如下
-- 因為這一次我們要加入環境變數，因此除了前三個是必要項，又加入了"env"這一個參數
+`[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)`
 
-<code><pre>
-{
-    "name": "flask line-bot echo demo with DB add-on",
-    "description": "a basic echo-line-bot with DB add-on @ heroku demo",
+
+- 這一個App有幾個元素，是一個App最基本的三個檔案：
+    - app.py: 主程式
+    - Procfile: App類型，如何啟動
+    - requirements.txt: 需要的套件
+    
+- 另外，在你的repo上根目錄下放一個 app.json 檔，格式如下，這邊多了「addons」項目，表示我們在佈署時需要安裝「heroku-postgresql」這一個add-on，它是hobby-dev這一個free的方案：
+
+<pre><code>{
+    "name": "line-bot demo with DB add-on",
+    "description": "line-bot with DB demo",
     "repository": "https://github.com/maloyang/one-click-line-echo-db",
     "env": {
         "LINE_CHANNEL_SECRET": {
@@ -32,12 +36,15 @@
         }
     },
     "addons": [
-        "heroku-postgresql:hobby-dev"
-      ]
+        {
+            "plan": "heroku-postgresql:hobby-dev"
+        }        
+    ]
 }
-</pre></code>
+</code></pre>
 
-- 只要完成了以上的事，就可以做一個快速佈署鍵給大家使用!!
+
+- 只要完成了以上的事，就可以做一個快速佈署按鈕分享你的專案給大家使用!!
 - 以這一個demo為例，他會把你帶到heroku的畫面，假設你已經登入了，那動呈現的畫面如下
 
 ![line-bot-demo](https://imgur.com/V6UoAQY.png)
@@ -47,3 +54,6 @@
 
 ![要填入callback的address](https://imgur.com/FPU4acI.png)
 
+
+### one-click教學part1 請參考[這邊](https://github.com/maloyang/one-click-flask-hello)。
+### one-click教學part2 請參考[這邊](https://github.com/maloyang/one-click-line-echo)。
